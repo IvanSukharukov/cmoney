@@ -1,5 +1,9 @@
 <?php
 
+
+use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\Finance\CategoryAccountController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,5 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', \App\Http\Controllers\Main\IndexController::class)->name('main.index');
+Route::get('/', [MainController::class, 'index'])->name('main.index');
+Route::get('/currency', [CurrencyController::class, 'index'])->name('currency.index');
 
+
+//то же самое, что и 7 маршрутов
+Route::resource('settings/currency', CurrencyController::class);
+
+/*Route::group(['prefix' => 'settings'], function () {
+    Route::group(['prefix' => 'currency'], function () {
+        Route::get('/', [CurrencyController::class, 'index'])->name('currency.index');
+        Route::get('/create', [CurrencyController::class, 'create'])->name('currency.create');
+        Route::post('/store', [CurrencyController::class, 'store'])->name('currency.store');
+        Route::get('/{currency}/edit', [CurrencyController::class, 'edit'])->name('currency.edit');
+        Route::get('/{currency}', [CurrencyController::class, 'show'])->name('currency.show');
+        Route::patch('/{currency}', [CurrencyController::class, 'update'])->name('currency.update');
+        Route::delete('/{currency}', [CurrencyController::class, 'destroy'])->name('currency.destroy');
+    });
+});*/
