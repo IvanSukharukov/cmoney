@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Main;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class IndexController extends Controller
+class MainController extends Controller
 {
-    public function __invoke()
+    public function index()
     {
         return view('main.index');
     }
