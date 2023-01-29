@@ -9,6 +9,7 @@ use App\Http\Requests\User\UpdateRequest;
 use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -58,5 +59,38 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('user.index');
+    }
+
+    public function loginForm()
+    {
+        return view('user.login');
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password,
+        ])) {
+            session()->flash('success', 'Успешная авторизация');
+
+            if (Auth::user()->is_admin) {
+                return redirect()->route('main.index');
+            } else {
+                return redirect()->route('login.create');
+            }
+        }
+        return redirect()->back()->with('error', 'Incorrect login or password');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login.create');
     }
 }

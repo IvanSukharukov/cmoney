@@ -17,13 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])->name('main.index');
-Route::get('/currency', [CurrencyController::class, 'index'])->name('currency.index');
 
 
-//то же самое, что и 7 маршрутов
-Route::resource('settings/currency', CurrencyController::class);
-Route::resource('user', UserController::class);
+
+
 
 /*Route::group(['prefix' => 'settings'], function () {
     Route::group(['prefix' => 'currency'], function () {
@@ -36,3 +33,18 @@ Route::resource('user', UserController::class);
         Route::delete('/{currency}', [CurrencyController::class, 'destroy'])->name('currency.destroy');
     });
 });*/
+
+//то же самое, что и 7 маршрутов
+Route::group(['middleware' => 'admin'], function () {
+    Route::get('/', [MainController::class, 'index'])->name('main.index');
+//    Route::get('/currency', [CurrencyController::class, 'index'])->name('currency.index');
+    Route::resource('/settings/currency', CurrencyController::class);
+    Route::resource('/user', UserController::class);
+});
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/login', [UserController::class, 'loginForm'])->name('login.create');
+    Route::post('/login', [UserController::class, 'login'])->name('login');
+});
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
