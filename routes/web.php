@@ -2,8 +2,8 @@
 
 
 use App\Http\Controllers\CurrencyController;
-use App\Http\Controllers\Finance\CategoryAccountController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +23,7 @@ Route::get('/currency', [CurrencyController::class, 'index'])->name('currency.in
 
 //то же самое, что и 7 маршрутов
 Route::resource('settings/currency', CurrencyController::class);
+Route::resource('user', UserController::class);
 
 /*Route::group(['prefix' => 'settings'], function () {
     Route::group(['prefix' => 'currency'], function () {

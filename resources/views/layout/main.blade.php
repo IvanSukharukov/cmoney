@@ -63,47 +63,47 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     {{--                    https://fontawesome.com/v5/search?o=r&m=free--}}
                     <li class="nav-item">
-                        <a href="pages/gallery.html" class="nav-link active">
+                        <a href="{{ route('user.index') }}" class="nav-link {{ request()->routeIs('user*') ? 'active' : null }}">
                             {{--                            <i class="nav-icon far fa-image"></i>--}}
                             <i class="nav-icon fas fa-money-bill-wave"></i>
                             <p>
-                                Внести расход/доход
+                                Пользователи
                             </p>
                         </a>
                     </li>
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item menu-open">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                Категории
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="./index.html" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Доходы</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="./index2.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Расходы</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Счета</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+{{--                    <li class="nav-item menu-open">--}}
+{{--                        <a href="#" class="nav-link active">--}}
+{{--                            <i class="nav-icon fas fa-tachometer-alt"></i>--}}
+{{--                            <p>--}}
+{{--                                Категории--}}
+{{--                                <i class="right fas fa-angle-left"></i>--}}
+{{--                            </p>--}}
+{{--                        </a>--}}
+{{--                        <ul class="nav nav-treeview">--}}
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="./index.html" class="nav-link active">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Доходы</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="./index2.html" class="nav-link">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Расходы</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                            <li class="nav-item">--}}
+{{--                                <a href="" class="nav-link">--}}
+{{--                                    <i class="far fa-circle nav-icon"></i>--}}
+{{--                                    <p>Счета</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
+                    <li class="nav-item {{ request()->is('settings*') ? 'menu-open' : null }}">
+                        <a href="#" class="nav-link {{ request()->is('settings*') ? 'active' : null }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Настройки
@@ -112,7 +112,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('currency.index') }}" class="nav-link">
+                                <a href="{{ route('currency.index') }}" class="nav-link {{ request()->is('settings/currency*') ? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Валюты</p>
                                 </a>
