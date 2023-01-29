@@ -40,7 +40,13 @@
                                     @foreach($users as $user)
                                         <tr>
                                             <td>{{ $user->id }}</td>
-                                            <td>{{ $user->name }}</td>
+                                            <td>
+                                                @if($user->is_premium)
+                                                    <i class="fas fa-coins icon-yellow"></i>
+
+                                                @endif
+                                                {{ $user->name }}
+                                            </td>
                                             <td>{{ $user->surname }}</td>
                                             <td>{{ $user->is_premium }}</td>
                                             <td>{{ $user->created_at }}</td>
