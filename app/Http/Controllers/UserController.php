@@ -46,11 +46,8 @@ class UserController extends Controller
 
     public function update(UpdateRequest $request, User $user)
     {
-//        dd($request);
         $data = $request->validated();
-//        dd($data);
         $user->is_premium = isset($data['is_premium']) ? 1 : 0;
-//dd($user->is_premium);
         $user->update($data);
         return view('user.show', compact('user'));
     }

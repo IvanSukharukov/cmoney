@@ -34,10 +34,10 @@ use Illuminate\Support\Facades\Route;
     });
 });*/
 
-//то же самое, что и 7 маршрутов
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/', [MainController::class, 'index'])->name('main.index');
 //    Route::get('/currency', [CurrencyController::class, 'index'])->name('currency.index');
+    //то же самое, что и 7 маршрутов
     Route::resource('/settings/currency', CurrencyController::class);
     Route::resource('/user', UserController::class);
 });
